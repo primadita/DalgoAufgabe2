@@ -10,26 +10,33 @@ dt=0.001;
 
 %% edit
 frequency = 30;
+%% initiate
+
+% initiate meshgrid for 3d plotting
+tau = 0.25;
+[X,Y] = meshgrid(-20 : tau : 20);
 
 %% initiate figure and plot axes
 hfig = figure('Position', [300 300 900 650], 'Resize', 'off');
 movegui(hfig,'center');
-haxes = axes('position',[0.05  0.1  .7  .8]);
 
-%% initiate plot features
+haxes = axes('Parent', hfig, 'position',[0.05  0.1  .7  .8]);
 
-% initiate meshgrid for 3d plotting
-[X,Y] = meshgrid(-20:.25: 20);
+startpositionAll = ginput(1);
+startpositionAll = (startpositionAll-0.5) * 40;
 
-% 
-amplitude=1;
-T=1/frequency;
+xPosition = startpositionAll(:,1);
+yPosition = startpositionAll(:,2);
+
+amplitude = 1;
+T = 1/frequency;
 lambda = c/frequency;
 phi0 = 0;
-r = sqrt(X.^2 + Y.^2);
+r = sqrt((X-xPosition).^2 + (Y-yPosition).^2);
+
 
 % initiate surface plot
-shandle = surf(X,Y,X*0);
+shandle = surf(haxes, X,Y,X*0);
 
 % interpolate surface
 shading(gca, 'interp');
