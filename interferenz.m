@@ -23,6 +23,8 @@ function z = interferenz(y0, freq, phi0, tau, n )
     %r = phi0*lambda/(-2*pi) ; 
     
     [x ,y] = meshgrid(-20:tau:20) ; 
+    sizeMesh = size(x) ;
+    sizeMesh = sizeMesh(1) ;
    
     % maxexp_x = max(y0(1), fenstersize - y0(1)) ; %maximal expansion in x axis
     % maxexp_y = max(y0(2), fenstersize - y0(2)) ; %maximal expansion in y axis
@@ -48,13 +50,13 @@ function z = interferenz(y0, freq, phi0, tau, n )
          len = length(t_seq);
          
          if mm == 1
-            sumh = zeros(401);
+            sumh = zeros(sizeMesh);
          end
          
          r = sqrt((x-idx_x).^2 + (y-idx_y).^2) ;
          
          for kk = 1:len
-            z = y0(mm) * sin(2*pi*(t_seq(kk)./T -r/lambda));
+            z = A * sin(2*pi*(t_seq(kk)./T -r/lambda) + Phi0);
             sumh = sumh + z ; 
          end
             surf(x,y,sumh);
