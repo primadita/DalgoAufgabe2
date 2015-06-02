@@ -25,7 +25,7 @@ axis equal;
 
 
 y0 = [1 2];
-freq = [200 500];
+freq = [200 100];
 phi0 = [0 0];
 n = 2;
 
@@ -64,10 +64,17 @@ uicontrol('Style', 'pushbutton',...
 
 
 % %% initiate buttons and edit windows --------------------------------------
+
+% first window, asking how many wave sources, one wants to have.
+num_source = inputdlg('How many wave sources do you want to have?','Input number of wave source');
+num_source = cell2mat(num_source);
+num_source = str2num(num_source);
+
+% determine the first position of the GUI table
 position = [700 600 180 20];
 
-
-for ll = 1 : 10
+% present the GUI table with the parameters of each waves
+for ll = 1 : num_source
 zahl = num2str(ll);
 uicontrol( 'Style', 'text', ...
            'String', ['Quelle ' zahl ],...
