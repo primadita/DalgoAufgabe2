@@ -7,12 +7,14 @@ time = 0;
 % timer period
 dt=0.001;
 
+
 %% initiate
 % initiate meshgrid for 3d plotting
 tau = 0.25;
 [X,Y] = meshgrid(-20 : tau : 20);
 sizeMesh = size(X);
 sizeMesh = sizeMesh(1);
+
 
 %% initiate figure and plot axes
 hfig = figure('Position', [300 300 900 650], 'Resize', 'off');
@@ -23,13 +25,20 @@ axis equal;
 
 
 
+a0 = [1 1 1];
+%freq = [100 100 100];
+phi0 = [0 0 0];
 
-y0 = [1 2];
-freq = [200 100];
-phi0 = [0 0];
-n = 2;
 
-startpositionAll = ginput(n);
+
+% %% initiate buttons and edit windows --------------------------------------
+
+% first window, asking how many wave sources, one wants to have.
+num_source = inputdlg('How many wave sources do you want to have?','Input number of wave source');
+num_source = cell2mat(num_source);
+num_source = str2double(num_source);
+
+startpositionAll = ginput(num_source);
 startpositionAll = (startpositionAll-0.5) * 40;
 
 % initiate surface plot
@@ -63,15 +72,16 @@ uicontrol('Style', 'pushbutton',...
        
 
 
-% %% initiate buttons and edit windows --------------------------------------
-
-% first window, asking how many wave sources, one wants to have.
-num_source = inputdlg('How many wave sources do you want to have?','Input number of wave source');
-num_source = cell2mat(num_source);
-num_source = str2num(num_source);
 
 % determine the first position of the GUI table
 position = [700 600 180 20];
+
+hfreq = zeros(1, num_source);  
+hAmplitude = zeros(1, num_source); 
+hPhi = zeros(1, num_source);
+
+
+
 
 % present the GUI table with the parameters of each waves
 for ll = 1 : num_source
@@ -91,24 +101,31 @@ uicontrol( 'Style', 'text', ...
            'String','P',...
            'Position', position + [120 -30 -165 0]);
 
-uicontrol( 'Style', 'edit', ...
-           'String', 'f',...
+hfreq(ll) = uicontrol( 'Style', 'edit', ...
+           'String', '150',...
            'Position', position + [15 -30 -135 0]);    
-uicontrol( 'Style', 'edit', ...
-           'String', 'A',...
+hAmplitude(ll) = uicontrol( 'Style', 'edit', ...
+           'String', '1',...
            'Position', position + [75 -30  -135 0]);  
 %phi = text('Interpreter', 'latex', 'String', '$$\phi$$');
-uicontrol( 'Style', 'edit', ...
-           'String','Phi',...
+hPhi(ll) = uicontrol( 'Style', 'edit', ...
+           'String','0',...
            'Position', position + [135 -30 -135 0]);
 position = position - [0 60 0 0];  
 end      
 
-
-
-        
+freq = zeros(1, num_source);
+a0 = zeros(1, num_source);
+phi0 = zeros(1, num_source);
 %% initiate and start timer as startbutton callback            
     function startbutton(~,~)
+        for cc = 1: num_source
+        freq(cc) = str2double(get(hfreq(cc), 'String'));
+        a0(cc)= str2double(get(hAmplitude(cc), 'String'));
+        phi0(cc)= str2double(get(hPhi(cc), 'String'));
+        end
+        
+        
         t = timer('Period',dt,'TimerFcn', @plotSinusoid,...
         'ExecutionMode','fixedRate', 'TasksToExecute',Inf);
         start(t);
@@ -119,6 +136,12 @@ end
 
         stop(timerfindall);delete(timerfindall);
     end
+
+
+
+%a0 =lue
+%phi0 = 
+
 
 
 %% update plot in every timer iteration
@@ -134,12 +157,12 @@ function plotSinusoid(~,~)
 
     % update surface plot with current Z
 
-        for mm = 1:n
+        for mm = 1:num_source
          position0 = startpositionAll(mm,:);
          idx_x = position0(1); % x0 of the circular wave
          idx_y = position0(2); % y0 of the circular wave
          
-         A = y0(mm) ; % take the value of x-th amplitude
+         A = a0(mm) ; % take the value of x-th amplitude
          
          f = freq(mm) ; % take the value of x-th frequency
          lambda = c/f ; % wavelength in m
