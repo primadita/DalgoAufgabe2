@@ -20,7 +20,8 @@ movegui(hfig,'center');
 
 haxes = axes('Parent', hfig, 'position',[0.05  0.1  .7  .8]);
 axis equal;
-
+hilfe=helpdlg('Im Input-Dialog musst du die Anzahl der Quellen festlegen. Dann musst du die Quellen mit der Maus in der Oberfläche anordenen und die gewünschten Werte für Frequenz, Amplitude und Phase eingeben. ')
+movegui(hilfe,'northeast');
 % first window, asking how many wave sources, one wants to have.
 num_source = inputdlg('How many wave sources do you want to have?','Input number of wave source');
 num_source = cell2mat(num_source);
@@ -31,6 +32,16 @@ startpositionAll = (startpositionAll-0.5) * 40;
 
 % initiate surface plot
 shandle = surf(haxes, X,Y,X*0);
+% source nameing
+for kk= 1:num_source
+    po=startpositionAll(kk,:);
+    x=po(1);
+    y=po(2);
+    zahl=num2str(kk);
+    quelle=['Quelle ' zahl];
+    ht=text(x,y,quelle);
+    set(ht,'color','magenta');
+end
 
 % interpolate surface
 shading(gca, 'interp');
