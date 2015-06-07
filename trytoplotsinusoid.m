@@ -7,7 +7,6 @@ time = 0;
 % timer period
 dt=0.001;
 
-
 %% initiate
 % initiate meshgrid for 3d plotting
 tau = 0.25;
@@ -15,23 +14,12 @@ tau = 0.25;
 sizeMesh = size(X);
 sizeMesh = sizeMesh(1);
 
-
 %% initiate figure and plot axes
 hfig = figure('Position', [300 300 900 650], 'Resize', 'off');
 movegui(hfig,'center');
 
 haxes = axes('Parent', hfig, 'position',[0.05  0.1  .7  .8]);
 axis equal;
-
-
-
-a0 = [1 1 1];
-%freq = [100 100 100];
-phi0 = [0 0 0];
-
-
-
-% %% initiate buttons and edit windows --------------------------------------
 
 % first window, asking how many wave sources, one wants to have.
 num_source = inputdlg('How many wave sources do you want to have?','Input number of wave source');
@@ -68,20 +56,12 @@ uicontrol('Style', 'pushbutton',...
            'Position', [120 15 100 30],...
            'Callback', @stopbutton);
        
-       
-       
-
-
-
 % determine the first position of the GUI table
 position = [700 600 180 20];
 
 hfreq = zeros(1, num_source);  
 hAmplitude = zeros(1, num_source); 
 hPhi = zeros(1, num_source);
-
-
-
 
 % present the GUI table with the parameters of each waves
 for ll = 1 : num_source
@@ -125,10 +105,6 @@ hLinePoints = plot(gca, 10, 10);
 
 positionMeshx = [];
 positionMeshy = [];
-
-
-
-
 
 %% initiate and start timer as startbutton callback            
     function startbutton(~,~)
