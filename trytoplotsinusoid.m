@@ -49,7 +49,7 @@ shading(gca, 'interp');
 view(2)
 
 % 
-axis off;
+%axis off;
 
 % black and white
 colormap('Gray');
@@ -117,6 +117,19 @@ end
 freq = zeros(1, num_source);
 a0 = zeros(1, num_source);
 phi0 = zeros(1, num_source);
+timeNew = [];
+dataNew = [];
+
+hLinePlot = figure('Visible', 'off');
+hLinePoints = plot(gca, 10, 10);
+
+positionMeshx = [];
+positionMeshy = [];
+
+
+
+
+
 %% initiate and start timer as startbutton callback            
     function startbutton(~,~)
         for cc = 1: num_source
@@ -135,14 +148,8 @@ phi0 = zeros(1, num_source);
     function stopbutton(~,~)
 
         stop(timerfindall);delete(timerfindall);
+        
     end
-
-
-
-%a0 =lue
-%phi0 = 
-
-
 
 %% update plot in every timer iteration
 function plotSinusoid(~,~)
@@ -156,7 +163,7 @@ function plotSinusoid(~,~)
     %Z = amplitude*sin(2*pi*(time./T-r/lambda)+phi0);
 
     % update surface plot with current Z
-
+        
         for mm = 1:num_source
          position0 = startpositionAll(mm,:);
          idx_x = position0(1); % x0 of the circular wave
@@ -185,9 +192,28 @@ function plotSinusoid(~,~)
     
         end
     set(shandle, 'ZData',sumh);
-    drawnow;  
+    drawnow;
+
+    %hLinePoints = plot(gca,time, 0.5, 'x-');
+     
+   timeNew = [timeNew time];
+   dataNew = [dataNew sumh(80,120)]
+   
+   if length(timeNew) >= 50
+       timeNew = timeNew(2:end);
+       dataNew = dataNew(2:end);
+   end
+   
+   
+   set(hLinePoints,'XData',timeNew);
+   set(hLinePoints, 'YData',dataNew);
+   drawnow;
+   
 end
+ 
+
 
 end
+
 
 
