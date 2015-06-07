@@ -20,7 +20,7 @@ movegui(hfig,'center');
 
 haxes = axes('Parent', hfig, 'position',[0.05  0.1  .7  .8]);
 axis equal;
-hilfe=helpdlg('Im Input-Dialog musst du die Anzahl der Quellen festlegen. Dann musst du die Quellen mit der Maus in der Oberfläche anordenen und die gewünschten Werte für Frequenz, Amplitude und Phase eingeben. ')
+hilfe=helpdlg('Im Input-Dialog musst du die Anzahl der Quellen festlegen. Dann musst du die Quellen mit der Maus in der Oberflï¿½che anordenen und die gewï¿½nschten Werte fï¿½r Frequenz, Amplitude und Phase eingeben. ')
 movegui(hilfe,'northeast');
 % first window, asking how many wave sources, one wants to have.
 num_source = inputdlg('How many wave sources do you want to have?','Input number of wave source');
@@ -140,6 +140,7 @@ positionMeshy = [];
 
 %% update plot in every timer iteration
 function plotSinusoid(~,~)
+    
 %UNTITLED Summary of this function goes here
   %Detailed explanation goes here
   
@@ -180,11 +181,22 @@ function plotSinusoid(~,~)
         end
     set(shandle, 'ZData',sumh);
     drawnow;
+    
+    set(shandle,'ButtonDownFcn',@buttondownCallback)  
+     
+        function buttondownCallback(~,~)
+                set(hLinePlot, 'Visible', 'on');
+                coordinates = get(gca,'Currentpoint');
+                [positionMeshx, positionMeshy]=interpoltest(coordinates);
+        end
+    
+    
+    
 
     %hLinePoints = plot(gca,time, 0.5, 'x-');
-     
+   dataNew = [dataNew sumh(160,80)] 
    timeNew = [timeNew time];
-   dataNew = [dataNew sumh(80,120)]
+   
    
    if length(timeNew) >= 50
        timeNew = timeNew(2:end);
