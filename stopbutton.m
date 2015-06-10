@@ -1,0 +1,1 @@
+stop(timerfindall);delete(timerfindall);
