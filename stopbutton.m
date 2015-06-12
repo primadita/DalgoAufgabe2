@@ -1,1 +1,1 @@
-stop(timerfindall);delete(timerfindall);
+running=0;stop(timerfindall);delete(timerfindall);
