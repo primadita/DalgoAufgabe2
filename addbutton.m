@@ -41,7 +41,6 @@ if num_source <= 10
     startpositionNew = ginput(1);
     startpositionAll = [startpositionAll; startpositionNew];
 
-
     po=startpositionAll(num_source,:);
     x=po(1);
     y=po(2);
@@ -50,7 +49,6 @@ if num_source <= 10
     ht=text(x,y,quelle);
     set(ht,'color','magenta');
 
-
     freq = [freq newfreq];
     a0 = [a0 newa0];
     phi0 = [phi0 newphi0];
@@ -58,6 +56,7 @@ else
     error = ['Maximum number of sources is reached. You can not '...
               'add more sources.'];
     set(hwarntext, 'String',error);
-    pause(5);
+    set(hwarntext, 'BackgroundColor','red', 'FontSize',11)
+    pause(3);
     num_source = 10;
 end

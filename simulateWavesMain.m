@@ -32,23 +32,31 @@ xlabel('time', 'FontSize', 10);
 ylabel('Amplitude', 'FontSize', 10);
 set(hlineplot, 'visible', 'off');
 
+% legend of the table
+uicontrol('Style', 'text', ...
+          'String', 'f:frequency[Hz] A:Amplitude P:Start angle[rad]',...
+          'FontSize',10,...
+          'Position',[330 20 300 25]);
+
 %% Place warning window
 
 hwarnpanel = uipanel('Parent', hfig, 'Title','Warning','FontSize',11,...
                      'Position',[0.56 0.52 0.25 0.38]);
                  
 hint = ['Please left-click on the axes on the left to determine your' ...
-        ' desired source points as many times as the number you put before. '...
-        'Then, put your desired values of frequency, amplitude, and '...
+        ' desired source points as many times as the number you put before.'...
+        ' Then, put your desired values of frequency, amplitude, and '...
         'start angle on the right table. Then click on start button '...
         'under the 3D-simulation window. It is possible to add one '...
         'source by clicking on the add-source button above. You will'...
-        ' then be asked to place the source point like before.'];
+        ' then be asked to place the source point like before. If you '...
+        'change any frequency, angle, or amplitude, do not forget to press'...
+        ' the start button again!'];
     
 hwarntext = uicontrol('Parent', hwarnpanel, 'Style','text',...
                       'String', hint,...
                       'Visible','on',...
-                      'FontSize',11,...
+                      'FontSize',10.5,...
                       'Units','Normalized',...
                       'Position',[0.03 0.03 0.95 0.93]);
 
@@ -60,6 +68,7 @@ input_source = inputdlg('How many wave sources do you want to have?',...
 num_source = cell2mat(input_source);
 num_source = str2double(num_source);
 
+% error message for no input and too many inputs
 while isnan(num_source) == 1
     herror = errordlg('Please put a number'); pause(3);
     input_source = inputdlg('How many wave sources do you want to have?',...
@@ -140,8 +149,6 @@ uicontrol('Style', 'pushbutton',...
 % determine the first position of the data table
 position = [1000 600 180 20];
 
-
-
 % data tab
 freq = [];
 a0 = [];
@@ -177,13 +184,13 @@ for ll = 1 : num_source
 
 end      
 
-for cc = 1:num_source
-    freq(cc) = str2double(get(hfreq(cc), 'String'));
-    a0(cc)= str2double(get(hAmplitude(cc), 'String'));
-    phi0(cc)= str2double(get(hPhi(cc), 'String'));
-end
-
-
+% for cc = 1:num_source
+%     freq(cc) = str2double(get(hfreq(cc), 'String'));
+%     a0(cc)= str2double(get(hAmplitude(cc), 'String'));
+%     phi0(cc)= str2double(get(hPhi(cc), 'String'));
+% end
+          
+% empty vectors for the callback functions
 timeNew = [];
 dataNew = [];
 
@@ -196,8 +203,6 @@ newfreq = [];
 newa0 = [];
 newphi0 = [];
 num_sourcenew = 0;
-
-%%
 
 sumh = [];
 
