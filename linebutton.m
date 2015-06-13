@@ -1,6 +1,15 @@
 axes(haxes);
 if running == 1
- coordinates = ginput(1);
+    coordinates = ginput(1);
+
+    posLinePlot=coordinates;
+    x=posLinePlot(1);
+    y=posLinePlot(2);
+   
+    hp=text(x,y,'o');
+    set(hp,'color','yellow');
+
+
 positionMesh = interpoltest(coordinates);
 
 positionMeshx = positionMesh(1);
