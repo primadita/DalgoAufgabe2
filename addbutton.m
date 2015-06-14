@@ -1,3 +1,7 @@
+% Script
+% Author: J.Arning, H.Heinermann, F.Primadita (c) IHA @ Jade Hochschule applied licence see EOF 
+% Version History:
+% Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 
 num_source = num_source+1;
 num_sourcenew = 1;
@@ -21,7 +25,7 @@ if num_source <= 10
               'Position', position + [120 -30 -165 0]);
 
     hfreqNew = uicontrol('Style', 'edit', ...
-                         'String', '150',...
+                         'String', '50',...
                          'Position', position + [15 -30 -135 0]);    
     hAmplitudeNew = uicontrol('Style', 'edit', ...
                               'String', '1',...
@@ -45,7 +49,7 @@ if num_source <= 10
     x=po(1);
     y=po(2);
     zahl=num2str(num_source);
-    quelle=['Source ' zahl];
+    quelle=['x  Source ' zahl];
     ht=text(x,y,quelle);
     set(ht,'color','magenta');
 

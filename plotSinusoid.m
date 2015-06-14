@@ -1,3 +1,8 @@
+% Script
+% Author: J.Arning, H.Heinermann, F.Primadita (c) IHA @ Jade Hochschule applied licence see EOF 
+% Version History:
+% Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
+
 % increment time 
         time=time+dt;
 

@@ -1,3 +1,19 @@
+% Script
+% Author: J.Arning, H.Heinermann, F.Primadita (c) IHA @ Jade Hochschule applied licence see EOF 
+% Version History:
+% Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
+
+if exist('hp')
+    stop(tlineplot);
+
+    delete(tlineplot);
+    clear('tlineplot');
+    clear('hlineaxes');
+
+
+    set(hp, 'visible', 'off');
+    clear('hp')
+end
 axes(haxes);
 if running == 1
     coordinates = ginput(1);
