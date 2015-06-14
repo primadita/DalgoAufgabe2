@@ -2,4 +2,13 @@
 running=0;
 
 % stopping and deleting all timers (simulation and lineplot)
-stop(timerfindall);delete(timerfindall);
+stop(t);
+stop(tlineplot);
+
+delete(tlineplot);
+clear('tlineplot');
+clear('hlineaxes');
+
+
+set(hp, 'visible', 'off');
+clear('hp');

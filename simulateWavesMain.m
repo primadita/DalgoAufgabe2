@@ -31,7 +31,7 @@ hlineplot = plot(hlineaxes, 0,0.5);
 xlabel('time', 'FontSize', 10);
 ylabel('Amplitude', 'FontSize', 10);
 set(hlineplot, 'visible', 'off');
-
+set(hlineaxes, 'XTick', []);
 % legend of the table
 uicontrol('Style', 'text', ...
           'String', 'f:frequency[Hz] A:Amplitude P:Start angle[rad]',...
@@ -122,7 +122,7 @@ for kk= 1:num_source
     x=po(1);
     y=po(2);
     zahl=num2str(kk);
-    quelle=['Source ' zahl];
+    quelle=['x  Source ' zahl];
     ht=text(x,y,quelle);
     set(ht,'color','magenta');
 end

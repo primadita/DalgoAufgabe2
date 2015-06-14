@@ -6,7 +6,7 @@ if running == 1
     x=posLinePlot(1);
     y=posLinePlot(2);
    
-    hp=text(x,y,'o');
+    hp=text(x,y,'o  Lineplot');
     set(hp,'color','yellow');
 
 
@@ -17,6 +17,7 @@ positionMeshy = positionMesh(2);
 
 tlineplot = timer('Period',dt,'TimerFcn', 'plotline',...
 'ExecutionMode','fixedRate', 'TasksToExecute',Inf);
+
 start(tlineplot);
 
 elseif running  == 0
