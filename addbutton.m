@@ -61,6 +61,6 @@ else
               'add more sources.'];
     set(hwarntext, 'String',error);
     set(hwarntext, 'BackgroundColor','red', 'FontSize',11)
-    pause(3);
+    pause(1);
     num_source = 10;
 end

@@ -37,5 +37,7 @@ tlineplot = timer('Period',dt,'TimerFcn', 'plotline',...
 start(tlineplot);
 
 elseif running  == 0
-    errordlg('Error. Lineplot can only be shown while simulation is running.')
+    errorlining = ['Error. Lineplot can only be shown while simulation is running.'];
+    set(hwarntext, 'String',errorlining);
+    set(hwarntext, 'BackgroundColor','yellow', 'FontSize',11)
 end
