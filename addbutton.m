@@ -5,15 +5,13 @@
 %%
 
 % increment number of sources
-num_source = num_source+1;
-num_sourcenew = 1;
-
+num_sourcenew = num_sourcenew+1;
 % Check if number of sources is less than ten.
 if num_source <= 10
     
 % If yes, 
 
-    zahl = num2str(num_source);
+    zahl = num2str(num_source+num_sourcenew);
     
     %  % create new edit windows for frequency, amplitude and phase
     uicontrol('Style', 'text', ...
@@ -44,30 +42,21 @@ if num_source <= 10
 
     position = position - [0 60 0 0];
 
-    % read parameters from edit window
-    newfreq=str2double(get(hfreqNew, 'String'));
-    newa0=str2double(get(hAmplitudeNew, 'String'));
-    newphi0=str2double(get(hPhiNew, 'String'));
-
     % make simulation window current axes and get position of added source
     % from click
     axes(haxes);    
     startpositionNew = ginput(1);
     startpositionAll = [startpositionAll; startpositionNew];
-    po=startpositionAll(num_source,:);
+    po=startpositionAll(num_source+num_sourcenew,:);
     x=po(1);
     y=po(2);
     
     %set source marker in simulation window
-    zahl=num2str(num_source);
+    zahl=num2str(num_source+num_sourcenew);
     quelle=['x  Source ' zahl];
     ht=text(x,y,quelle);
     set(ht,'color','magenta');
 
-    % update parameters vector
-    freq = [freq newfreq];
-    a0 = [a0 newa0];
-    phi0 = [phi0 newphi0];
        
 else
 % If number of sources is more than ten return error message

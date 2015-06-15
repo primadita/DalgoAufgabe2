@@ -2,6 +2,9 @@
 % Author: J.Arning, H.Heinermann, F.Primadita
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 
+%stop(timerfindall);
+delete(timerfindall);
+
 clear all;
 close all;
 clc;
@@ -157,10 +160,7 @@ uicontrol('Style', 'pushbutton',...
 % determine the first position of the data table
 position = [1000 600 180 20];
 
-% data tab
-freq = [];
-a0 = [];
-phi0 = [];
+
 
 for ll = 1 : num_source
     zahl = num2str(ll);
@@ -192,24 +192,22 @@ for ll = 1 : num_source
 
 end      
 
-% for cc = 1:num_source
-%     freq(cc) = str2double(get(hfreq(cc), 'String'));
-%     a0(cc)= str2double(get(hAmplitude(cc), 'String'));
-%     phi0(cc)= str2double(get(hPhi(cc), 'String'));
-% end
+for cc = 1:num_source
+    freq(cc) = str2double(get(hfreq(cc), 'String'));
+    a0(cc)= str2double(get(hAmplitude(cc), 'String'));
+    phi0(cc)= str2double(get(hPhi(cc), 'String'));
+end
           
 % empty vectors for the callback functions
 timeNew = [];
 dataNew = [];
 
+num_sourcenew = 0;
 
 positionMeshx = [];
 positionMeshy = [];
 positionMesh =  [];
 
-newfreq = [];
-newa0 = [];
-newphi0 = [];
 num_sourcenew = 0;
 
 sumh = [];
