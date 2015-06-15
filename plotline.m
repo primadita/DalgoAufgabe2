@@ -1,5 +1,6 @@
-% Script to create line plot of waveform at one position as a function of
-% time
+% plotline.m is a part of wave simulation main script,which creates line
+% plot of waveform at one position as a function of time.
+% 
 % Author: J.Arning, H.Heinermann, F.Primadita 
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 

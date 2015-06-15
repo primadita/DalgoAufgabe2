@@ -1,4 +1,6 @@
-% Script to set position for line plot
+% linebutton is a part of wave simulation script,which set position for
+% line plot.
+%
 % Author: J.Arning, H.Heinermann, F.Primadita 
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 

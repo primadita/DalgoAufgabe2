@@ -1,4 +1,4 @@
-% Script to stop simulation and line plot. 
+% stopbutton.m is a part of wave simulation main script,which stops simulation and line plot. 
 % Author: J.Arning, H.Heinermann, F.Primadita
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 

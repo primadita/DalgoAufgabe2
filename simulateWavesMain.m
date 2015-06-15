@@ -1,4 +1,8 @@
-% Script to initiate GUI, waves simulation and line plot
+% simulateWavesMain is a wave simulation main script,which initiates GUI,
+% waves function and line plot. 
+%
+% Usage: simulateWavesMain
+%
 % Author: J.Arning, H.Heinermann, F.Primadita
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 
@@ -78,14 +82,13 @@ num_source = cell2mat(input_source);
 num_source = str2double(num_source);
 
 % error message for no input and too many inputs
-while isnan(num_source) == 1
+while isnan(num_source) == 1 | num_source == 0
     %herror = errordlg('Please put a number'); pause(3);
     
     input_source = inputdlg('Error.Please type a number',...
                         'Error');
     num_source = cell2mat(input_source);
     num_source = str2double(num_source);
-    
 end
 
 while num_source > 10
@@ -100,6 +103,12 @@ while num_source > 10
                       'Input number of wave source(s)');
             num_source = cell2mat(input_source);
             num_source = str2double(num_source);
+            while isnan(num_source) == 1 | num_source == 0
+                input_source = inputdlg('Error.Please type a number',...
+                                    'Error');
+                num_source = cell2mat(input_source);
+                num_source = str2double(num_source);
+            end
         case 'No'
             num_source = 10 ;
         case 'Cancel'
@@ -159,8 +168,6 @@ uicontrol('Style', 'pushbutton',...
 
 % determine the first position of the data table
 position = [1000 600 180 20];
-
-
 
 for ll = 1 : num_source
     zahl = num2str(ll);
