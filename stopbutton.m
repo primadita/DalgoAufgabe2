@@ -3,8 +3,6 @@
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 
 
-% variable to differ between running or stopped simulation
-running=0;
 
 % stopping and deleting timers (t --> simulation and tlineplot -->lineplot)
 % if they already exist, and in case of the line plot clear plot, axes and 
@@ -12,6 +10,8 @@ running=0;
 
 if exist('t')
     stop(t);
+    delete(t);
+    clear('t');
 end
 
 if exist('tlineplot')
@@ -22,3 +22,6 @@ if exist('tlineplot')
     set(hp, 'visible', 'off');
     clear('hp');
 end
+
+% variable to differ between running or stopped simulation
+running=0;

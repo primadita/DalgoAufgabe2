@@ -8,7 +8,7 @@ time=time+dt;
 
 % update surface plot with current Z
 
-for mm = 1:num_source
+for mm = 1:(num_source+num_sourcenew);
     
      % position of sources
      position0 = startpositionAll(mm,:);
