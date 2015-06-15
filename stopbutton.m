@@ -4,6 +4,9 @@
 
 
 
+% variable to differ between running or stopped simulation
+running=0;
+
 % stopping and deleting timers (t --> simulation and tlineplot -->lineplot)
 % if they already exist, and in case of the line plot clear plot, axes and 
 % position marker in simulation window
@@ -22,6 +25,3 @@ if exist('tlineplot')
     set(hp, 'visible', 'off');
     clear('hp');
 end
-
-% variable to differ between running or stopped simulation
-running=0;
