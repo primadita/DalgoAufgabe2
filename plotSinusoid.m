@@ -1,43 +1,52 @@
-% Script
-% Author: J.Arning, H.Heinermann, F.Primadita (c) IHA @ Jade Hochschule applied licence see EOF 
-% Version History:
+% Script to plot and animate waves simulation
+% Author: J.Arning, H.Heinermann, F.Primadita  
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 
 % increment time 
-        time=time+dt;
+time=time+dt;
 
-        % update sinusoidal function
-        %Z = amplitude*sin(2*pi*(time./T-r/lambda)+phi0);
 
-        % update surface plot with current Z
+% update surface plot with current Z
 
-            for mm = 1:num_source
-             position0 = startpositionAll(mm,:);
-             idx_x = position0(1); % x0 of the circular wave
-             idx_y = position0(2); % y0 of the circular wave
+for mm = 1:num_source
+    
+     % position of sources
+     position0 = startpositionAll(mm,:);
+     
+     % x0 and y0 of the circular wave
+     idx_x = position0(1); 
+     idx_y = position0(2);
 
-             A = a0(mm) ; % take the value of x-th amplitude
+     % take the value of x-th amplitude
+     A = a0(mm) ; 
+     
+     % take the value of x-th frequency, calculate wavelength and period
+     f = freq(mm) ; 
+     lambda = c/f ; 
+     T = 1/f ;
 
-             f = freq(mm) ; % take the value of x-th frequency
-             lambda = c/f ; % wavelength in m
-             T = 1/f ;   % period in s
+     % take the value of x-th phase and calculate sequence time 
+     Phi0 = phi0(mm); 
+     t_seq = 0:tau:T;
+     len = length(t_seq);
 
-             Phi0 = phi0(mm); 
-             t_seq = 0:tau:T;
-             len = length(t_seq);
+     % pre-allocate vector for z-Values
+     if mm == 1
+        sumh = zeros(sizeMesh);
+     end
+     
+     % calculate radius
+     r = sqrt((X-idx_x).^2 + (Y-idx_y).^2) ;
 
-             if mm == 1
-                sumh = zeros(sizeMesh);
-             end
+     % calculate z-values and calculate cummulative sum
+     for kk = 1:len
+        z = A * sin(2*pi*(time./T -r/lambda) + Phi0);
+        sumh = sumh + z ; 
+     end
 
-             r = sqrt((X-idx_x).^2 + (Y-idx_y).^2) ;
+end
 
-             for kk = 1:len
-                z = A * sin(2*pi*(time./T -r/lambda) + Phi0);
-                sumh = sumh + z ; 
-             end
-
-            end
-        set(shandle, 'ZData',sumh);
-        drawnow;  
+% update simulation window with new values
+set(shandle, 'ZData',sumh);
+drawnow;  
    

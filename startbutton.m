@@ -1,6 +1,5 @@
-% Script
-% Author: J.Arning, H.Heinermann, F.Primadita (c) IHA @ Jade Hochschule applied licence see EOF 
-% Version History:
+% Script to start simulation
+% Author: J.Arning, H.Heinermann, F.Primadita 
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 
 

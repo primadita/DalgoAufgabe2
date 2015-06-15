@@ -1,11 +1,11 @@
-% Script
-% Author: J.Arning, H.Heinermann, F.Primadita (c) IHA @ Jade Hochschule applied licence see EOF 
-% Version History:
+% Script to initiate GUI, waves simulation and line plot
+% Author: J.Arning, H.Heinermann, F.Primadita
 % Ver. 0.01 initial create (empty) 23-May-2015 			 JA, HH, FP 
 
 clear all;
 close all;
 clc;
+
 %% constants
 % speed of sound
 c=343;
@@ -37,6 +37,7 @@ xlabel('time', 'FontSize', 10);
 ylabel('Amplitude', 'FontSize', 10);
 set(hlineplot, 'visible', 'off');
 set(hlineaxes, 'XTick', []);
+
 % legend of the table
 uicontrol('Style', 'text', ...
           'String', 'f:frequency[Hz] A:Amplitude P:Start angle[rad]',...
