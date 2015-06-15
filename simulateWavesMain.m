@@ -208,7 +208,6 @@ positionMeshx = [];
 positionMeshy = [];
 positionMesh =  [];
 
-num_sourcenew = 0;
 
 sumh = [];
 

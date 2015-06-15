@@ -11,13 +11,13 @@ running=0;
 % if they already exist, and in case of the line plot clear plot, axes and 
 % position marker in simulation window
 
-if exist('t')
+if exist('t')==1
     stop(t);
     delete(t);
     clear('t');
 end
 
-if exist('tlineplot')
+if exist('tlineplot')==1
     stop(tlineplot);
     delete(tlineplot);
     clear('tlineplot');
