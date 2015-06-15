@@ -7,7 +7,7 @@
 % increment number of sources
 num_sourcenew = num_sourcenew+1;
 % Check if number of sources is less than ten.
-if num_source <= 10
+if num_source+num_sourcenew <= 10
     
 % If yes, 
 
@@ -64,6 +64,5 @@ else
               'add more sources.'];
     set(hwarntext, 'String',error);
     set(hwarntext, 'BackgroundColor','red', 'FontSize',11)
-    pause(1);
-    num_source = 10;
+    num_sourcenew = num_sourcenew-1;
 end

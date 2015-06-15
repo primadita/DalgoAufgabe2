@@ -5,6 +5,8 @@
 
 % variable to differ between running or stopped simulation
 
+running = 1;
+
 if exist('hfreqNew')
 % read parameters from edit window
         hfreq = [hfreq hfreqNew];
@@ -25,5 +27,3 @@ end
 t = timer('Period',dt,'TimerFcn', 'plotSinusoid',...
           'ExecutionMode','fixedRate', 'TasksToExecute',Inf);
 start(t);
-
-running =1;
